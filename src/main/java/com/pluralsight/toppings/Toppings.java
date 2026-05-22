@@ -12,7 +12,7 @@ public abstract class Toppings {
         return name;
     }
     //Derived Method to get Price with passing sandwichSize (Child classes will handle their own pricing)
-    public static double getPrice(String sandwichSize){
+    public double getPrice(String sandwichSize){
         return 0;
     }
 }
