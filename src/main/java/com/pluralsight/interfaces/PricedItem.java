@@ -5,7 +5,7 @@ public interface PricedItem {
 
     //Methods:
     //Every item MUST be able to CALCULATE its own PRICE.
-    public static double getPrice(){
+    public default double getPrice(){
         return 0;
     }
 }
