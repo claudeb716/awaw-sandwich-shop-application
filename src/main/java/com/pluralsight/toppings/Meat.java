@@ -12,6 +12,7 @@ public class Meat extends Premium{
     @Override
     public double getPrice(String sandwichSize) {
         double meatPrice = 0.0;
+        //TODO refactor to switch case.
         // Check the sandwich size and whether there’s an extra topping to determine the price of the Meat and add the additional cost.
         if (sandwichSize.equalsIgnoreCase("4in")){
             meatPrice += isHasExtra() ? 1.50 : 1.00; //Ternary Operator (?:) if yes for extra/ if no for extra
