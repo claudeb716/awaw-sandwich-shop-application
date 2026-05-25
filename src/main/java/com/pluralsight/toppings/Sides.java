@@ -1,12 +1,13 @@
 package com.pluralsight.toppings;
 
-public class Sides extends Toppings{
+public class Sides extends Toppings {
     //Field:
 
     //Constructor: created from parent class(Topping) for name of Side.
     public Sides(String name) {
         super(name);
     }
+
     //Override method:  sandwichSize as a parameter to handle class own pricing.
 
     @Override
@@ -16,5 +17,10 @@ public class Sides extends Toppings{
             sidePrice = 0.0;
         }
         return sidePrice;
+    }
+
+    @Override
+    public String getDescription() {
+        return super.getDescription();
     }
 }

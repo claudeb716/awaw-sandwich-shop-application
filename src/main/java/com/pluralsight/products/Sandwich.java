@@ -7,7 +7,7 @@ import com.pluralsight.toppings.Toppings;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sandwich implements PricedItem, Display {
+public abstract class Sandwich implements PricedItem, Display {
     //Fields:
     private String sandwichSize;
     private String breadType;
@@ -24,10 +24,10 @@ public class Sandwich implements PricedItem, Display {
     public void addTopping(Toppings t){
         this.allToppings.add(t);
     }
-    //Override:
-    //PriceItem
+
+    //Derived Method: to get Price with passing sandwichSize (Child classes will handle their own pricing)
     @Override
-    public double getPrice() {
+    public double getPrice(String sandwichSize){
         double sandwichPrice= 0.0;
         // Check for sandwichSize to equal String and update sandwichPrice
         if (this.sandwichSize.equalsIgnoreCase("4in")){
@@ -43,26 +43,22 @@ public class Sandwich implements PricedItem, Display {
         }
         return sandwichPrice;
     }
+    //Override:
     //Display
     @Override
     public String getDescription() {
         // Create string of a built sandwich
         StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%s Sandwich on %s Bread (%s)",this.sandwichSize, this.breadType, "%s Toasted: ",this.isToasted));
-        if (this.allToppings.isEmpty()){ //if all toppings are empty
+        sb.append(String.format("%s Sandwich on %s Bread (%s Toasted)\n", this.sandwichSize, this.breadType, this.isToasted));
+
+        if (this.allToppings.isEmpty()) { //if all toppings are empty
             return sb.append("Toppings: None").toString();
         }
-        //Loop through toppings size and add name to string
-        for (int i = 0; i <= allToppings.size()-1; i++) {
-            String toppingName = this.allToppings.get(i).getName();
-                sb.append(toppingName);
-                if (i == allToppings.size()-1 && i > 0){ // if topping size is equal to i and i greater than 0 add "and"
-                    sb.append("and ").append(toppingName);
-                } else if (i == 0) { //i equal to 0  add topping
-                    sb.append(toppingName);
-                }else { // more than 2
-                    sb.append(", ").append(toppingName);
-                }
+
+        for (Toppings t : allToppings) {
+            sb.append("Toppings:\n").append(t.getDescription()).append(", ");
+            //clean up trailing comma and space
+            sb.setLength(sb.length()-2);
         }
         return sb.toString();
     }

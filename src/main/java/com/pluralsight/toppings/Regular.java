@@ -6,6 +6,7 @@ public class Regular extends Toppings{
     public Regular(String name) {
         super(name);
     }
+
     //Overide Method:  sandwichSize as a parameter to handle class own pricing.
     @Override
     public double getPrice(String sandwichSize) {
@@ -14,5 +15,11 @@ public class Regular extends Toppings{
             regToppingPrice = 0.0;
         }
         return regToppingPrice;
+    }
+
+    @Override
+    public String getDescription() {
+        return super.getDescription();
+
     }
 }

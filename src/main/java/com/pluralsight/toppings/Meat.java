@@ -4,9 +4,10 @@ public class Meat extends Premium{
     //Fields:
 
     //Constructor: created from parent class(Premium) for name of Meat and if they want extra?
-    public Meat(String name, boolean hasExtra) {
-        super(name, hasExtra);
+    public Meat(String sandwichSize, String breadType, boolean isToasted, String name, boolean hasExtra) {
+        super(sandwichSize, breadType, isToasted, name, hasExtra);
     }
+
     //Override method:  sandwichSize as a parameter to handle class own pricing. and check if hasExtra Meat
 
     @Override
@@ -23,5 +24,10 @@ public class Meat extends Premium{
         }
         // return final price
         return meatPrice;
+    }
+
+    @Override
+    public String getDescription() {
+        return super.getDescription();
     }
 }

@@ -5,7 +5,7 @@ public interface Display {
 
     //Methods:
     //Every item MUST be able to PRINT OUT its own FORMATTED description
-    public default String getDescription(){
+    default String getDescription(){
         return "";
     }
 

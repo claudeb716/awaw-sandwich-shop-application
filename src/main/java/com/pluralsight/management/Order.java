@@ -81,4 +81,15 @@ public class Order {
             return numberOfOtherItems > 0;
         }
     }
+    // Description Method
+    @Override
+    public String toString() {
+        for (PricedItem item : this.pricedItems){
+            return "Order: " + orderId + "\n" +
+                    "Sandwich: " + "\n" +
+                    "Price: " + calculateorderTotal() +
+                    '}';
+        }
+        return null;
+    }
 }

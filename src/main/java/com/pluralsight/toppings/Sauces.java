@@ -7,6 +7,7 @@ public class Sauces extends Toppings{
     public Sauces(String name) {
         super(name);
     }
+
     //Override method:  sandwichSize as a parameter to handle class own pricing.
     @Override
     public double getPrice(String sandwichSize) {
@@ -15,5 +16,10 @@ public class Sauces extends Toppings{
             saucePrice = 0.0;
         }
         return saucePrice;
+    }
+
+    @Override
+    public String getDescription() {
+        return super.getDescription();
     }
 }
