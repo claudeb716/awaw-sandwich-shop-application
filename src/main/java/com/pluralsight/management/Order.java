@@ -5,7 +5,6 @@ import com.pluralsight.products.Sandwich;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Order {
     //Fields: List to hold PricedItems
@@ -26,40 +25,7 @@ public class Order {
         return orderId;
     }
     //Derived Methods:
-    //Order Screen
-    public void orderScreen(){
-        Scanner myScanner = new Scanner(System.in);
-        while(true){
-            System.out.println("""
-                AwAw Deli Screen
-                1. Add Sandwich
-                2. Add Drink
-                3. Add Chips
-                4. Checkout
-                0. Cancel Order
-                """);
-            String userInput = myScanner.nextLine();
-            switch (userInput){
-                case "1" -> {
-                    System.out.println("Add Sandwich");
-                    break;
-                }
-                case "2" -> {
-                    System.out.println("Add Drink");
-                    break;
-                }
-                case "3" -> {
-                    System.out.println("Add Chips");
-                    break;
-                }
-                case "4" -> {
-                    System.out.println("Checkout");
-                    break;
-                }
-                case "0" -> {return;}
-            }
-        }
-    }
+
     // Add PricedItem to the Order
     public void addItem(PricedItem item){
         this.pricedItems.add(item);

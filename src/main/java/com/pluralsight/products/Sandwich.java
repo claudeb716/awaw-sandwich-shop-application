@@ -7,7 +7,7 @@ import com.pluralsight.toppings.Toppings;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Sandwich implements PricedItem, Display {
+public class Sandwich implements PricedItem, Display {
     //Fields:
     private String sandwichSize;
     private String breadType;
@@ -22,6 +22,7 @@ public abstract class Sandwich implements PricedItem, Display {
     }
     //Derived Method: pass Toppings as a parameter and add toppings in order to List.
     public void addTopping(Toppings t){
+
         this.allToppings.add(t);
     }
 
