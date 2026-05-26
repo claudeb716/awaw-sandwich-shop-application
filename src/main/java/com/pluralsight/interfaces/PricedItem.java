@@ -8,6 +8,9 @@ public interface PricedItem {
     public default double getPrice(){
         return 0;
     }
+
+    //Derived Method: to get Price with passing sandwichSize (Child classes will handle their own pricing)
+    double getPrice(String sandwichSize);
     //Override: Methods from Interfaces
     //PricedItem
 

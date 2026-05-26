@@ -27,6 +27,12 @@ public class Drink implements PricedItem, Display {
         }
         return drinkPrice;
     }
+
+    @Override
+    public double getPrice(String sandwichSize) {
+        return 0;
+    }
+
     //Display
     @Override
     public String getDescription() {

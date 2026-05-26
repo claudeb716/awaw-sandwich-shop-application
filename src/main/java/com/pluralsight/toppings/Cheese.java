@@ -4,8 +4,8 @@ public class Cheese extends Premium{
     //Fields:
 
     //Constructor: created from parent class(Premium) for name of Cheese and if they want extra?
-    public Cheese(String sandwichSize, String breadType, boolean isToasted, String name, boolean hasExtra) {
-        super(sandwichSize, breadType, isToasted, name, hasExtra);
+    public Cheese(String name, boolean hasExtra) {
+        super(name, hasExtra);
     }
 
     //Override method:  sandwichSize as a parameter to handle class own pricing. and check if hasExtra Cheese

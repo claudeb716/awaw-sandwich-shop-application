@@ -32,17 +32,31 @@ public class Order {
         while(true){
             System.out.println("""
                 AwAw Deli Screen
-                
-                
+                1. Add Sandwich
+                2. Add Drink
+                3. Add Chips
+                4. Checkout
+                0. Cancel Order
                 """);
             String userInput = myScanner.nextLine();
             switch (userInput){
-                case "1" -> System.out.println("New Order");
-                case "0" -> {
-                    return;
+                case "1" -> {
+                    System.out.println("Add Sandwich");
+                    break;
                 }
-
-
+                case "2" -> {
+                    System.out.println("Add Drink");
+                    break;
+                }
+                case "3" -> {
+                    System.out.println("Add Chips");
+                    break;
+                }
+                case "4" -> {
+                    System.out.println("Checkout");
+                    break;
+                }
+                case "0" -> {return;}
             }
         }
     }

@@ -17,6 +17,12 @@ public class Chips implements PricedItem, Display {
         // Flat-fee for every bag of chips
         return 1.50;
     }
+
+    @Override
+    public double getPrice(String sandwichSize) {
+        return 0;
+    }
+
     //Display
     @Override
     public String getDescription() {
