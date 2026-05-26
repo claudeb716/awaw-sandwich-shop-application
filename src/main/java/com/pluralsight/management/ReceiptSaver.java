@@ -5,32 +5,37 @@ import com.pluralsight.interfaces.PricedItem;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
 
 public class ReceiptSaver {
     //Fields:
     //Constructor:
+    public ReceiptSaver() {
+    }
     //Methods:
     //Pass current Order to be written on file with LocalDateTime
     public void saveReceiptToFile(Order o){
         LocalDateTime nowDateTime = LocalDateTime.now();
-        // Create a file to save Receipt
-        String AWAW_RECEIPTS_HEADER = nowDateTime.format(DateTimeFormatter.ofPattern("yyyyMMdd-hhmmss")) + ".txt";
+        // Create a file date formatted header to save order to receipt folder
+        String AWAW_RECEIPTS_HEADER = "receipts/" + nowDateTime.format(DateTimeFormatter.ofPattern("yyyyMMdd-hhmmss")) + ".txt";
+        //Wrap in try-with-resources
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(AWAW_RECEIPTS_HEADER,true))){
-            // Over-write file
-            bw.write(AWAW_RECEIPTS_HEADER + o.getOrderId()+ "|" + "\n");
+            // Write orders to folder
+            bw.write("=================================================");
+            bw.write( " ID : " + o.getOrderId() + "\n");
             // Loop through all pricedItems
             for (PricedItem item : o.getPricedItems()){
-                    bw.write(item)
-
+                if (item instanceof Display){ // extract descriptions from Display interface
+                    bw.write(((Display) item).getDescription() + "\n");
+                }
+                bw.write("---------------------------------------------");
             }
-
+            bw.write("=================================================");
+            bw.write(String.format("Total: %.2f",o.calculateorderTotal()));
+            System.out.println("Receipt saved");
         } catch (Exception e) {
-            System.err.println("Error" + e.getMessage());
+            System.err.println("Error Saving Receipt" + e.getMessage());
         }
 
     }
