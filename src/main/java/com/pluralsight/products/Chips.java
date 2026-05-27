@@ -13,20 +13,16 @@ public class Chips implements PricedItem, Display {
     //Override: Methods from Interfaces
     //PricedItem
     @Override
-    public double getPrice() {
+    public double calculatePrice() {
         // Flat-fee for every bag of chips
         return 1.50;
     }
 
-    @Override
-    public double getPrice(String sandwichSize) {
-        return 0;
-    }
 
     //Display
     @Override
     public String getDescription() {
         //return formatted price of chips
-        return String.format("Chips: %s ($%.2f)",this.chipType, getPrice());
+        return String.format("Chips: %s ($%.2f)",this.chipType, calculatePrice());
     }
 }

@@ -16,13 +16,22 @@ public class Meat extends Premium{
         double meatPrice = 0.0;
         //TODO refactor to switch case.
         // Check the sandwich size and whether there’s an extra topping to determine the price of the Meat and add the additional cost.
-        if (sandwichSize.equalsIgnoreCase("4in")){
-            meatPrice += isHasExtra() ? 1.50 : 1.00; //Ternary Operator (?:) if yes for extra/ if no for extra
-        }else if (sandwichSize.equalsIgnoreCase("8in")){
-            meatPrice +=  isHasExtra() ? 3.00 : 2.00;
-        }else if (sandwichSize.equalsIgnoreCase("12in")){
-            meatPrice += isHasExtra() ? 4.50 : 3.00;
+
+        switch (sandwichSize){
+            case"4in" -> meatPrice = isHasExtra() ? 1.50 : 1.00;
+                case"8in" -> meatPrice = isHasExtra() ? 3.00 : 2.00;
+                case"12in" -> meatPrice = isHasExtra() ? 4.50 : 3.00;
+            default -> meatPrice = 0.0;
         }
+
+//        if (sandwichSize.equalsIgnoreCase("4in")){
+//        meatPrice += isHasExtra() ? 1.50 : 1.00; //Ternary Operator (?:) if yes for extra/ if no for extra
+//       }else if (sandwichSize.equalsIgnoreCase("8in")){
+//           meatPrice +=  isHasExtra() ? 3.00 : 2.00;
+//       }else if (sandwichSize.equalsIgnoreCase("12in")){
+//           meatPrice += isHasExtra() ? 4.50 : 3.00;
+//       }
+
         // return final price
         return meatPrice;
     }

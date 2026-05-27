@@ -15,7 +15,7 @@ public class Drink implements PricedItem, Display {
     //Override: Methods from Interfaces
     //PricedItem
     @Override
-    public double getPrice() {
+    public double calculatePrice() {
         double drinkPrice = 0.0;
         // check drinkSize matches String size return drinkPrice based on size
         if (this.drinkSize.equalsIgnoreCase("Small")){
@@ -28,14 +28,10 @@ public class Drink implements PricedItem, Display {
         return drinkPrice;
     }
 
-    @Override
-    public double getPrice(String sandwichSize) {
-        return 0;
-    }
 
     //Display
     @Override
     public String getDescription() {
-        return String.format("Drink: %s %s ($%.2f)", this.drinkSize, this.drinkFlavor, getPrice());
+        return String.format("Drink: %s %s ($%.2f)", this.drinkSize, this.drinkFlavor, calculatePrice());
     }
 }

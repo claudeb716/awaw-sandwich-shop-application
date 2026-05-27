@@ -13,13 +13,21 @@ public class Cheese extends Premium{
     public double getPrice(String sandwichSize) {
         double cheesePrice = 0.0;
         // Check the sandwichSize and whether there’s an extra topping to determine the price of the Cheese and add the additional cost.
-        if (sandwichSize.equalsIgnoreCase("4in")){
-            cheesePrice += isHasExtra() ? 1.05 : 0.75; //Ternary Operator (?:) if yes for extra/ if no for extra
-        }else if (sandwichSize.equalsIgnoreCase("8in")){
-            cheesePrice +=  isHasExtra() ? 2.10 : 1.50;
-        }else if (sandwichSize.equalsIgnoreCase("12in")){
-            cheesePrice += isHasExtra() ? 3.15 : 2.25;
+        switch (sandwichSize){
+            case"4in" -> cheesePrice = isHasExtra() ? 1.05 : .75;
+            case"8in" -> cheesePrice = isHasExtra() ? 2.10 : 1.50;
+            case"12in" -> cheesePrice = isHasExtra() ? 3.15 : 2.25;
+            default -> cheesePrice = 0.0;
         }
+
+//        if (sandwichSize.equalsIgnoreCase("4in")){
+//            cheesePrice += isHasExtra() ? 1.05 : 0.75; //Ternary Operator (?:) if yes for extra/ if no for extra
+//        }else if (sandwichSize.equalsIgnoreCase("8in")){
+//            cheesePrice +=  isHasExtra() ? 2.10 : 1.50;
+//        }else if (sandwichSize.equalsIgnoreCase("12in")){
+//            cheesePrice += isHasExtra() ? 3.15 : 2.25;
+//        }
+
         // return final price
         return cheesePrice;
     }

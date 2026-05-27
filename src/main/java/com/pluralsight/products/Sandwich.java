@@ -28,7 +28,7 @@ public class Sandwich implements PricedItem, Display {
 
     //Derived Method: to get Price with passing sandwichSize (Child classes will handle their own pricing)
     @Override
-    public double getPrice(String sandwichSize){
+    public double calculatePrice(){
         double sandwichPrice= 0.0;
         // Check for sandwichSize to equal String and update sandwichPrice
         if (this.sandwichSize.equalsIgnoreCase("4in")){
