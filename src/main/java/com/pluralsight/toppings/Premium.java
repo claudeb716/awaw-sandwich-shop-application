@@ -13,4 +13,10 @@ public abstract class Premium extends Toppings{
     public boolean isHasExtra() {
         return hasExtra;
     }
+
+    @Override
+    public abstract double getPrice(String sandwichSize);
+
+    @Override
+    public abstract String getDescription(String size);
 }

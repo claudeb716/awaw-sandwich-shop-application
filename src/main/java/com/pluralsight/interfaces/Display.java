@@ -4,10 +4,8 @@ public interface Display {
     //No Fields or Constructor:
 
     //Methods:
-    //Every item MUST be able to PRINT OUT its own FORMATTED description
-    default String getDescription(String size){
-        return "";
-    }
+    //Every item(Sandwich,Chip,Drink) MUST be able to PRINT OUT its own FORMATTED description
+    String getDescription();
 
     //Override:
     //Display

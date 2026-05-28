@@ -15,7 +15,6 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Main {
     private static final Scanner myScanner = new Scanner(System.in); //Shared scanner for handling input through whole menu
-
     private static List<Order> orderList = new ArrayList<>(); // The ArrayList stays here to hold all orders
     private static Sandwich sandwichBuilder;
     private static Drink drinksHolder;
@@ -23,7 +22,7 @@ public class Main {
     //Global item count holders:
     public static int sandwichCount = 0; // keep count of how many sandwiches are created.
     public static int sideCount = 0; // keep count of chips and drinks selected.
-    public static int addedtoppings = 0;// keep count of added toppings
+    public static int addedToppings = 0;// keep count of added toppings
     public static boolean menuLoop = true;
     public static int sauces = 0;
 
@@ -45,10 +44,7 @@ public class Main {
             switch (userInput) {
                 //TODO Generate random numbers 0-100 for Order ID
                 case 1:
-
-
                     orderScreen();
-
                     break;
                 case 0:
                     System.out.println("Thank you, Come Again! ");
@@ -61,7 +57,7 @@ public class Main {
 
 
     }// OUTSIDE OF MAIN Method:
-        //Order Screen Method:
+    //Order Screen Method:
     public static void orderScreen() {
         while (menuLoop) {
             Order orderBuilder; //Main Order Variable
@@ -78,7 +74,7 @@ public class Main {
                     0) Cancel Order
                     ====================
                     """);
-            System.out.println("Sandwiches: " + sandwichCount + "\n" + "Premiums Selected: " + addedtoppings + "\n" + "Chips & Drinks: " + sideCount);
+            System.out.println("Sandwiches: " + sandwichCount + "\n" + "Premiums Selected: " + addedToppings + "\n" + "Chips & Drinks: " + sideCount);
             System.out.println("Enter Choice: ");
             int userInput = myScanner.nextInt();
             myScanner.nextLine();
@@ -224,7 +220,6 @@ public class Main {
             }
         }
     }
-
     public static void handleDrinkDistributor() {
         //Drink Loop
         boolean drinkLoop = true;
@@ -324,7 +319,6 @@ public class Main {
             }
         }
     }
-
     public static void handleChipSelection() {
         //Chip Loop
         boolean chipLoop = true;
@@ -397,7 +391,6 @@ public class Main {
             }
         }
     }
-
     public static void meatSelection() {
         //Meat Loop
         boolean meatLoop = true;
@@ -415,7 +408,7 @@ public class Main {
                     0) (None/Next->)
                     ===========================
                     """);
-            System.out.println("Added Premiums:" + addedtoppings);
+            System.out.println("Added Premiums:" + addedToppings);
             System.out.println("Enter Choice: ");
             int meatChoice = myScanner.nextInt();
             myScanner.nextLine();
@@ -423,32 +416,32 @@ public class Main {
                 case 1: {
                     sandwichBuilder.addTopping(new Meat("Steak", askIfExtra()));
                     System.out.println("Steak Added! ");
-                    addedtoppings++;
+                    addedToppings++;
                     break;}
                 case 2: {
                     sandwichBuilder.addTopping(new Meat("Ham", askIfExtra()));
                     System.out.println("Ham Added! ");
-                    addedtoppings++;
+                    addedToppings++;
                     break;}
                 case 3:{
                     sandwichBuilder.addTopping(new Meat("Salami", askIfExtra()));
                     System.out.println("Salami Added! ");
-                    addedtoppings++;
+                    addedToppings++;
                     break;}
                 case 4:{
                     sandwichBuilder.addTopping(new Meat("Roast Beef", askIfExtra()));
                     System.out.println("Roast Beef Added! ");
-                    addedtoppings++;}
+                    addedToppings++;}
                     break;
                 case 5:{
                     sandwichBuilder.addTopping(new Meat("Chicken", askIfExtra()));
                     System.out.println("Chicken Added! ");
-                    addedtoppings++;
+                    addedToppings++;
                     break;}
                 case 6:{
                     sandwichBuilder.addTopping(new Meat("Bacon", askIfExtra()));
                     System.out.println("Bacon Added! ");
-                    addedtoppings++;
+                    addedToppings++;
                     break;}
                 case 0:{
                     meatLoop = false;
@@ -460,7 +453,6 @@ public class Main {
 
         }
     }
-
     public static boolean askIfExtra() {
         System.out.println("""
                 =======================
@@ -479,7 +471,6 @@ public class Main {
             }
         };
     }
-
     public static int generateID() {
         int id;
         boolean idExists;
@@ -495,7 +486,6 @@ public class Main {
         } while (idExists);
         return id;
     }
-
     public static void cheeseSelection() {
         //Cheese Loop
         boolean cheeseLoop = true;
@@ -511,26 +501,26 @@ public class Main {
                     0) (Next ->)
                     ===========================
                     """);
-            System.out.println("Added Premiums:" + addedtoppings);
+            System.out.println("Added Premiums:" + addedToppings);
             System.out.println("Enter Choice: ");
             int cheeseChoice = myScanner.nextInt();
             myScanner.nextLine();
             switch (cheeseChoice) {
                 case 1:
                     sandwichBuilder.addTopping(new Cheese("American", askIfExtra()));
-                    addedtoppings++;
+                    addedToppings++;
                     break;
                 case 2:
                     sandwichBuilder.addTopping(new Cheese("Provolone", askIfExtra()));
-                    addedtoppings++;
+                    addedToppings++;
                     break;
                 case 3:
                     sandwichBuilder.addTopping(new Cheese("Cheddar", askIfExtra()));
-                    addedtoppings++;
+                    addedToppings++;
                     break;
                 case 4:
                     sandwichBuilder.addTopping(new Cheese("Swiss", askIfExtra()));
-                    addedtoppings++;
+                    addedToppings++;
                     break;
                 case 0:
                     cheeseLoop = false;
@@ -541,7 +531,6 @@ public class Main {
             }
         }
     }
-
     public static void toppingSelection() {
         //Topping Loop
         boolean toppingLoop = true;
@@ -611,8 +600,7 @@ public class Main {
             }
         }
     }
-
-     public static void sideSelection () {
+    public static void sideSelection () {
         //Side Loop
          boolean sideLoop = true;
             while (sideLoop) {
@@ -642,11 +630,10 @@ public class Main {
                 }
             }
         }
-
-     public static void sauceSelection () {
+    public static void sauceSelection () {
         //Sauce Loop
-         boolean sauceloop = true;
-            while (sauceloop) {
+         boolean sauceLoop = true;
+            while (sauceLoop) {
                 System.out.println("""
                         =============================
                         Would you like any Sauces?:
@@ -688,7 +675,7 @@ public class Main {
                         sandwichBuilder.addTopping(new Sauces("Vinaigrette"));
                         break;}
                     case 0: {
-                        sauceloop = false;
+                        sauceLoop = false;
                         break;}
                     default: {
                         System.out.println("Invalid Choice: Enter options 0-6.");

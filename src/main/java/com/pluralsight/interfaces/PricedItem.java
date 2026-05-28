@@ -4,7 +4,7 @@ public interface PricedItem {
     //No Fields or Constructor:
 
     //Methods:
-    //Every item MUST be able to CALCULATE its own PRICE.
+    //Every item(Sandwich,Chip,Drink) MUST be able to CALCULATE its own PRICE.
      double calculatePrice();
 
     //Override: Methods from Interfaces

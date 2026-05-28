@@ -19,7 +19,7 @@ public class Chips implements PricedItem, Display {
     }
     //Display
     @Override
-    public String getDescription(String size) {
+    public String getDescription() {
         //return formatted price of chips
         return String.format("Chips: %s ($%.2f)",this.chipType, this.calculatePrice());
     }

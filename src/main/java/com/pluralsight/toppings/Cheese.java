@@ -11,7 +11,7 @@ public class Cheese extends Premium{
     //Override method:  sandwichSize as a parameter to handle class own pricing. and check if hasExtra Cheese
     @Override
     public double getPrice(String sandwichSize) {
-        double cheesePrice = 0.0;
+        double cheesePrice;
         // Check the sandwichSize and whether there’s an extra topping to determine the price of the Cheese and add the additional cost.
         switch (sandwichSize){
             case"4in" -> cheesePrice = isHasExtra() ? 1.05 : .75;

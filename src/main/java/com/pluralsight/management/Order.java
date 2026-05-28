@@ -32,7 +32,7 @@ public class Order {
         this.pricedItems.add(item);
     }
     // Adds up every pricedItem added to the Order
-    public double calculateorderTotal(){
+    public double calculateOrderTotal(){
         double orderTotal = 0.0;
         for (PricedItem item : this.pricedItems){
             orderTotal += item.calculatePrice();
@@ -72,7 +72,7 @@ public class Order {
                 orderReceipt += "----------------------------------\n";
             }
         }
-        orderReceipt += "Total Due: $" + calculateorderTotal() +  "\n";
+        orderReceipt += "Total Due: $" + calculateOrderTotal() +  "\n";
         orderReceipt += "=================\n";
         return orderReceipt;
     }

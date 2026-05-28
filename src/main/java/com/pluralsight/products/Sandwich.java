@@ -47,17 +47,17 @@ public class Sandwich implements PricedItem, Display {
     //Override:
     //Display
     @Override
-    public String getDescription(String size) {
+    public String getDescription() {
         // Create string of a built sandwich
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("%s Sandwich on %s Bread (%s Toasted)\n", this.sandwichSize, this.breadType, this.isToasted));
 
         if (this.allToppings.isEmpty()) { //if all toppings are empty
-            return sb.append("Toppings: None").toString();
+            return sb.append("None").toString();
         }
         sb.append("Toppings:\n");
         for (Toppings t : allToppings) {
-            sb.append(" + ").append(t.getDescription(this.sandwichSize)).append("\n ");
+            sb.append("  ").append(t.getDescription(this.sandwichSize)).append("\n ");
         }
         return sb.toString();
     }

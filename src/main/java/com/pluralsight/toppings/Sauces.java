@@ -11,11 +11,8 @@ public class Sauces extends Toppings{
     //Override method:  sandwichSize as a parameter to handle class own pricing.
     @Override
     public double getPrice(String sandwichSize) {
-        double saucePrice = 0.0; //Included
-        if (sandwichSize.equalsIgnoreCase("4in") || sandwichSize.equalsIgnoreCase("8in") || sandwichSize.equalsIgnoreCase("12in")){
-            saucePrice = 0.0;
-        }
-        return saucePrice;
+        //Included
+        return 0.0;
     }
 
     @Override
