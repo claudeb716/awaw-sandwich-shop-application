@@ -1,5 +1,6 @@
 package com.pluralsight.management;
 
+import com.pluralsight.interfaces.Display;
 import com.pluralsight.interfaces.PricedItem;
 import com.pluralsight.products.Sandwich;
 
@@ -64,12 +65,15 @@ public class Order {
     // Description Method
     @Override
     public String toString() {
+        String orderReceipt = "================= \n" + "Order ID: " + orderId + "\n" + "=================\n";
         for (PricedItem item : this.pricedItems){
-            return "Order: " + orderId + "\n" +
-                    "Sandwich: " + "\n" +
-                    "Price: " + calculateorderTotal() +
-                    '}';
+            if (item instanceof Display){
+                orderReceipt += ((Display) item).getDescription() + "\n";
+                orderReceipt += "----------------------------------\n";
+                orderReceipt += "Total Due: $" + calculateorderTotal() +  "\n";
+                orderReceipt += "=================\n";
+            }
         }
-        return null;
+        return orderReceipt;
     }
 }
