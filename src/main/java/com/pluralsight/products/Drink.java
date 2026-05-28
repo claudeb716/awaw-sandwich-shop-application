@@ -27,11 +27,9 @@ public class Drink implements PricedItem, Display {
         }
         return drinkPrice;
     }
-
-
     //Display
     @Override
-    public String getDescription() {
-        return String.format("Drink: %s %s ($%.2f)", this.drinkSize, this.drinkFlavor, calculatePrice());
+    public String getDescription(String size) {
+        return String.format("Drink: %s %s ($%.2f)", this.drinkSize, this.drinkFlavor, this.calculatePrice());
     }
 }

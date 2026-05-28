@@ -19,7 +19,6 @@ public class Sauces extends Toppings{
     }
 
     @Override
-    public String getDescription() {
-        return super.getDescription();
-    }
+    public String getDescription(String size) {
+        return String.format("+ Sauces: %s  \n ($%.2f)",this.getName(),this.getPrice(size));    }
 }

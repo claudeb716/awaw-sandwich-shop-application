@@ -5,8 +5,10 @@ public interface Display {
 
     //Methods:
     //Every item MUST be able to PRINT OUT its own FORMATTED description
-    default String getDescription(){
+    default String getDescription(String size){
         return "";
     }
 
+    //Override:
+    //Display
 }

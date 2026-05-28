@@ -21,7 +21,7 @@ public abstract class Toppings implements Display {
     public abstract double getPrice(String sandwichSize);
 
     @Override
-    public String getDescription(){
+    public String getDescription(String size){
         return String.format("Toppings: %s ",this.name);
     }
 }

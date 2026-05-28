@@ -18,8 +18,7 @@ public class Regular extends Toppings{
     }
 
     @Override
-    public String getDescription() {
-        return super.getDescription();
-
+    public String getDescription(String size) {
+        return String.format("+ Include Toppings: %s  \n ($%.2f)",this.getName(),this.getPrice(size));
     }
 }

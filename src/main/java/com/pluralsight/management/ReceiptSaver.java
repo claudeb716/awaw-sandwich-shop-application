@@ -22,17 +22,8 @@ public class ReceiptSaver {
         //Wrap in try-with-resources
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(AWAW_RECEIPTS_HEADER,true))){
             // Write orders to folder
-            bw.write("=================================================");
-            bw.write( " ID : " + o.getOrderId() + "\n");
-            // Loop through all pricedItems
-            for (PricedItem item : o.getPricedItems()){
-                if (item instanceof Display){ // extract descriptions from Display interface
-                    bw.write(((Display) item).getDescription() + "\n");
-                }
-                bw.write("---------------------------------------------");
-            }
-            bw.write("=================================================");
-            bw.write(String.format("Total: %.2f",o.calculateorderTotal()));
+            bw.write(o.toString());
+            bw.newLine();
             System.out.println("Receipt saved");
         } catch (Exception e) {
             System.err.println("Error Saving Receipt" + e.getMessage());

@@ -37,7 +37,7 @@ public class Meat extends Premium{
     }
 
     @Override
-    public String getDescription() {
-        return super.getDescription();
+    public String getDescription(String size) {
+        return String.format("+Meat: %s (%s) Has extra \n ($%.2f)",this.getName(),this.isHasExtra() ,this.getPrice(size));
     }
 }

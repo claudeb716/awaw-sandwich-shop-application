@@ -70,10 +70,10 @@ public class Order {
             if (item instanceof Display){
                 orderReceipt += ((Display) item).getDescription() + "\n";
                 orderReceipt += "----------------------------------\n";
-                orderReceipt += "Total Due: $" + calculateorderTotal() +  "\n";
-                orderReceipt += "=================\n";
             }
         }
+        orderReceipt += "Total Due: $" + calculateorderTotal() +  "\n";
+        orderReceipt += "=================\n";
         return orderReceipt;
     }
 }

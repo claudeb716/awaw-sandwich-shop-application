@@ -17,12 +17,10 @@ public class Chips implements PricedItem, Display {
         // Flat-fee for every bag of chips
         return 1.50;
     }
-
-
     //Display
     @Override
-    public String getDescription() {
+    public String getDescription(String size) {
         //return formatted price of chips
-        return String.format("Chips: %s ($%.2f)",this.chipType, calculatePrice());
+        return String.format("Chips: %s ($%.2f)",this.chipType, this.calculatePrice());
     }
 }
