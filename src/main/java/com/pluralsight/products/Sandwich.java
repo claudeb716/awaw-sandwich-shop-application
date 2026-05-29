@@ -2,7 +2,7 @@ package com.pluralsight.products;
 
 import com.pluralsight.interfaces.Display;
 import com.pluralsight.interfaces.PricedItem;
-import com.pluralsight.toppings.Toppings;
+import com.pluralsight.toppings.Topping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ public class Sandwich implements PricedItem, Display {
     private String sandwichSize;
     private String breadType;
     private boolean isToasted;
-    private List<Toppings> allToppings; //Collection List for added toppings.
+    private List<Topping> allToppings; //Collection List for added toppings.
     //Constructor: initializes the fields and creates and empty topping collection list
     public Sandwich(String sandwichSize, String breadType, boolean isToasted) {
         this.sandwichSize = sandwichSize;
@@ -21,7 +21,7 @@ public class Sandwich implements PricedItem, Display {
         this.allToppings = new ArrayList<>();
     }
     //Derived Method: pass Toppings as a parameter and add toppings in order to List.
-    public void addTopping(Toppings t){
+    public void addTopping(Topping t){
 
         this.allToppings.add(t);
     }
@@ -39,7 +39,7 @@ public class Sandwich implements PricedItem, Display {
             sandwichPrice += 8.50;
         }
         //Loop through all added toppings and then add their cost to sandwichPrice
-        for (Toppings t : allToppings){
+        for (Topping t : allToppings){
             sandwichPrice += t.getPrice(this.sandwichSize);
         }
         return sandwichPrice;
@@ -57,7 +57,7 @@ public class Sandwich implements PricedItem, Display {
             return sb.append("None").toString();
         }else {
             sb.append("Toppings:\n");
-            for (Toppings t : allToppings) {
+            for (Topping t : allToppings) {
                 sb.append("  ").append(t.getDescription(this.sandwichSize)).append("\n ");
             }
             return sb.toString();

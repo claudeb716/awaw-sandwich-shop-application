@@ -1,10 +1,10 @@
 package com.pluralsight.toppings;
 
-public abstract class Toppings {
+public abstract class Topping {
     //Fields:
     private String name;
     //Constructor (pass(super) to child class for them to have a name)
-    public Toppings(String name) {
+    public Topping(String name) {
         this.name = name;
     }
     //Getter

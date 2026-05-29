@@ -1,13 +1,16 @@
 package com.pluralsight;
 
-import com.pluralsight.interfaces.Display;
-import com.pluralsight.interfaces.PricedItem;
 import com.pluralsight.management.Order;
 import com.pluralsight.management.ReceiptSaver;
-import com.pluralsight.products.Chips;
+import com.pluralsight.products.Chip;
 import com.pluralsight.products.Drink;
 import com.pluralsight.products.Sandwich;
-import com.pluralsight.toppings.*;
+import com.pluralsight.toppings.Included.Regular;
+import com.pluralsight.toppings.Included.Sauce;
+import com.pluralsight.toppings.Included.Side;
+import com.pluralsight.toppings.Topping;
+import com.pluralsight.toppings.upcharge.Cheese;
+import com.pluralsight.toppings.upcharge.Meat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +22,7 @@ public class Main {
     private static List<Order> orderList = new ArrayList<>(); // The ArrayList stays here to hold all orders
     private static Sandwich sandwichBuilder;
     private static Drink drinksHolder;
-    private static Chips chipsHolder;
+    private static Chip chipsHolder;
     //Global item count holders:
     public static int sandwichCount = 0; // keep count of how many sandwiches are created.
     public static int sideCount = 0; // keep count of chips and drinks selected.
@@ -345,8 +348,8 @@ public class Main {
         }
         return drink;
     }
-    public static Chips handleChipSelection() {
-        Chips chips = null;
+    public static Chip handleChipSelection() {
+        Chip chips = null;
         //Chip Loop
         boolean chipLoop = true;
         while (chipLoop) {
@@ -390,7 +393,7 @@ public class Main {
                     yield "";
                 }
             };
-            chips = new Chips(chipsSelected);
+            chips = new Chip(chipsSelected);
             sideCount++;
             // Add switch to confirm adding another bag of Chips or return to main menu
             System.out.println("""
@@ -604,8 +607,8 @@ public class Main {
         }
         return cheese;
     }
-    public static Toppings toppingSelection() {
-        Toppings regular = null;
+    public static Topping toppingSelection() {
+        Topping regular = null;
         //Topping Loop
         boolean toppingLoop = true;
         while (toppingLoop) {
@@ -675,8 +678,8 @@ public class Main {
         }
         return regular;
     }
-    public static Sides sideSelection () {
-        Sides sides = null;
+    public static Side sideSelection () {
+        Side sides = null;
         //Side Loop
          boolean sideLoop = true;
             while (sideLoop) {
@@ -692,13 +695,13 @@ public class Main {
                 myScanner.nextLine();
                 switch (sauce) {
                     case 1:{
-                        sides = new Sides("Au Jus");
+                        sides = new Side("Au Jus");
                         System.out.println("Au Ju Added!");
                         sauces++;
                         break;}
                     case 2:{
                         System.out.println("Au Jus not Added");
-                        sides = new Sides("");
+                        sides = new Side("");
 
                         sideLoop = false;
                         break;}
@@ -709,8 +712,8 @@ public class Main {
             }
             return sides;
         }
-    public static Sauces sauceSelection () {
-        Sauces sauces = null;
+    public static Sauce sauceSelection () {
+        Sauce sauces = null;
         //Sauce Loop
          boolean sauceLoop = true;
             while (sauceLoop) {
@@ -733,27 +736,27 @@ public class Main {
                 switch (sauceChoice) {
                     case 1: {
                         System.out.println("Mayo Added! ");
-                        sauces = new Sauces("Mayo");
+                        sauces = new Sauce("Mayo");
                         break;}
                     case 2: {
                         System.out.println("Mustard Added!");
-                        sauces = new Sauces("Mustard");
+                        sauces = new Sauce("Mustard");
                         break;}
                     case 3: {
                         System.out.println("Ketchup Added!");
-                        sauces = new Sauces("Ketchup");
+                        sauces = new Sauce("Ketchup");
                         break;}
                     case 4: {
                         System.out.println("Ranch Added!");
-                        sauces = new Sauces("Ranch");
+                        sauces = new Sauce("Ranch");
                         break;}
                     case 5: {
                         System.out.println("Thousand Island Added!");
-                        sauces = new Sauces("Thousand Island");
+                        sauces = new Sauce("Thousand Island");
                         break;}
                     case 6:{
                         System.out.println("Vinaigrette Added!");
-                        sauces = new Sauces("Vinaigrette");
+                        sauces = new Sauce("Vinaigrette");
                         break;}
                     case 0: {
                         sauceLoop = false;

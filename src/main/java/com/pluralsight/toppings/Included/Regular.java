@@ -1,6 +1,8 @@
-package com.pluralsight.toppings;
+package com.pluralsight.toppings.Included;
 
-public class Regular extends Toppings{
+import com.pluralsight.toppings.Topping;
+
+public class Regular extends Topping {
     //Fields
     //Constructor: created from parent class(Topping) for name of RegularToppings.
     public Regular(String name) {

@@ -1,10 +1,12 @@
-package com.pluralsight.toppings;
+package com.pluralsight.toppings.Included;
 
-public class Sides extends Toppings {
+import com.pluralsight.toppings.Topping;
+
+public class Side extends Topping {
     //Field:
 
     //Constructor: created from parent class(Topping) for name of Side.
-    public Sides(String name) {
+    public Side(String name) {
         super(name);
     }
 

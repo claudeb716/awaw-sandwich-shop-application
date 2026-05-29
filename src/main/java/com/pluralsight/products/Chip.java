@@ -3,11 +3,11 @@ package com.pluralsight.products;
 import com.pluralsight.interfaces.Display;
 import com.pluralsight.interfaces.PricedItem;
 
-public class Chips implements PricedItem, Display {
+public class Chip implements PricedItem, Display {
     //Fields:
     private  String chipType;
     //Constructor:
-    public Chips(String chipType) {
+    public Chip(String chipType) {
         this.chipType = chipType;
     }
     //Override: Methods from Interfaces

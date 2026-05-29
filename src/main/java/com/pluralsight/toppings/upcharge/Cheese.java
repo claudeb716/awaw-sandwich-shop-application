@@ -1,6 +1,8 @@
-package com.pluralsight.toppings;
+package com.pluralsight.toppings.upcharge;
 
-public class Cheese extends Premium{
+import com.pluralsight.toppings.Premium;
+
+public class Cheese extends Premium {
     //Fields:
 
     //Constructor: created from parent class(Premium) for name of Cheese and if they want extra?

@@ -1,10 +1,12 @@
-package com.pluralsight.toppings;
+package com.pluralsight.toppings.Included;
 
-public class Sauces extends Toppings{
+import com.pluralsight.toppings.Topping;
+
+public class Sauce extends Topping {
     //Fields:
 
     //Constructor: created from parent class(Topping) for name of Sauce.
-    public Sauces(String name) {
+    public Sauce(String name) {
         super(name);
     }
 
