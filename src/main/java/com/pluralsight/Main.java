@@ -61,7 +61,7 @@ public class Main {
     //Order Screen Method:
     public static void orderScreen() {
         while (menuLoop) {
-            int orderIdNumber = generateID();  //Make a unique ID by checking the existing order lis
+            int orderIdNumber = generateID();  //Make a unique ID by checking the existing order list
            Order orderBuilder = new Order(orderIdNumber);
             System.out.println("""
                     ====================
@@ -102,12 +102,15 @@ public class Main {
                 }
                 case 4: {
                     System.out.println("Checkout: ");
-                    orderList =  processCheckOut(orderBuilder); // Handles validation and file saving string
+                    processCheckOut(orderList); // Handles validation and file saving string
 
                     break;
                 }
                 case 0: {
                     System.out.println("Order Canceled");
+                    sideCount = 0;
+                    sandwichCount = 0;
+                    addedToppings = 0;
                     orderList = null;
                     sandwichBuilder = null; // To clear out current order from processing
                     drinksHolder = null;
@@ -194,15 +197,15 @@ public class Main {
 
             System.out.println("Now Select Toppings !");
             //Meat Loop
-             sandwichBuilder.addTopping(meatSelection());
+            sb.addTopping(meatSelection());
             // Cheese Loop
-            sandwichBuilder.addTopping(cheeseSelection());
+            sb.addTopping(cheeseSelection());
             // Topping Loop
-            sandwichBuilder.addTopping(toppingSelection());
+            sb.addTopping(toppingSelection());
             // Side Loop
-            sandwichBuilder.addTopping(sideSelection());
+            sb.addTopping(sideSelection());
             //Sauce Loop
-            sandwichBuilder.addTopping(sauceSelection());
+            sb.addTopping(sauceSelection());
             System.out.println("Sandwich Added!");
             sandwichCount++;
             breadLoop =  addSandwich();
@@ -760,8 +763,8 @@ public class Main {
             }
             return sauces;
         }
-    public static List<Order> processCheckOut(Order order) {
-        if (!order.orderRequirementValidator()){
+    public static void processCheckOut(List<Order> orderList) {
+        if (!orderList.isEmpty()){
             System.out.println("""
                     Your Cart Does NOT meet minium requirement.
                                      NOTE:
@@ -769,10 +772,15 @@ public class Main {
                     1 Sandwich OR 1 Side item (Chips/Drink) to order!
                     """);
         }
-        for (PricedItem item : order.getPricedItems()){
-             if (item instanceof Display) {
-                 System.out.println(((Display) item).getDescription()); // Display Name and price of item
-                 System.out.println(order);  //Display current total calculation
+        for (Order order : orderList) {
+
+            //for (Display item : order.getPricedItems()){
+            // if (order instanceof Display) {
+
+            System.out.println(order.toString()); // Display Name and price of item
+            System.out.println(order.calculateOrderTotal());  //Display current total calculation
+        }
+
                  // Ask user to confirm order or cancel.
                  System.out.println("""
                          1) Confirm Order
@@ -782,11 +790,14 @@ public class Main {
                  switch (confirmation) {
                      case 1: {
                          ReceiptSaver orderSaver = new ReceiptSaver();
-                         orderSaver.saveReceiptToFile(order);
+                         orderSaver.saveReceiptToFile(orderList);
                          System.out.println("""
                                  Order Successfully Completed!
                                  """);
-                         orderList.add(order);
+                         //orderList.add(order);
+                         sandwichCount = 0;
+                         sideCount = 0;
+                         addedToppings = 0;
                          sandwichBuilder = null;
                          drinksHolder = null;
                          chipsHolder = null;
@@ -799,9 +810,6 @@ public class Main {
                          System.out.println("Invalid Option: choose 0-1");
                      }
                  }
-             }
-        }
-        return orderList;
     }
 
 

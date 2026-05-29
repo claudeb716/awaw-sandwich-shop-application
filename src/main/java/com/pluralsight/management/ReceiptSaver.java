@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 
 public class ReceiptSaver {
     //Fields:
@@ -13,15 +14,17 @@ public class ReceiptSaver {
     }
     //Methods:
     //Pass current Order to be written on file with LocalDateTime
-    public void saveReceiptToFile(Order o){
+    public void saveReceiptToFile(List<Order> orderList){
         LocalDateTime nowDateTime = LocalDateTime.now();
         // Create a file date formatted header to save order to receipt folder
         String AWAW_RECEIPTS_HEADER = "receipts/" + nowDateTime.format(DateTimeFormatter.ofPattern("yyyyMMdd-hhmmss")) + ".txt";
         //Wrap in try-with-resources
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(AWAW_RECEIPTS_HEADER,true))){
             // Write orders to folder
-            bw.write(o.toString());
-            bw.newLine();
+            for (Order o : orderList){
+                bw.write(o.toString());
+                bw.newLine();
+            }
             System.out.println("Receipt saved");
         } catch (Exception e) {
             System.err.println("Error Saving Receipt" + e.getMessage());
