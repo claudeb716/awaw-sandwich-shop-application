@@ -1,0 +1,56 @@
+================= 
+Order ID: 28
+=================
+4in Sandwich on White Bread (true Toasted)
+Toppings:
+  +Meat: Steak (true) Has extra 
+ ($1.50)
+   +Cheese: American (true) Has extra 
+ ($1.05)
+   + Include Toppings: Lettuce  
+ ($0.00)
+   + Side:   
+ ($0.00)
+   + Sauces: Mayo  
+ ($0.00)
+ 
+----------------------------------
+Total Due: $8.05
+=================
+
+================= 
+Order ID: 28
+=================
+Chips: Lays's (Classic) ($1.50)
+----------------------------------
+Total Due: $1.5
+=================
+
+================= 
+Order ID: 28
+=================
+Drink: Small Sprite ($2.00)
+----------------------------------
+Total Due: $2.0
+=================
+
+================= 
+Order ID: 28
+=================
+4in Sandwich on White Bread (true Toasted)
+Toppings:
+  +Meat: Steak (true) Has extra 
+ ($1.50)
+   +Cheese: American (true) Has extra 
+ ($1.05)
+   + Include Toppings: Lettuce  
+ ($0.00)
+   + Side:   
+ ($0.00)
+   + Sauces: Mayo  
+ ($0.00)
+ 
+----------------------------------
+Total Due: $8.05
+=================
+
