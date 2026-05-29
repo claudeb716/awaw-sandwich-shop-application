@@ -3,6 +3,7 @@ package com.pluralsight;
 import com.pluralsight.interfaces.Display;
 import com.pluralsight.interfaces.PricedItem;
 import com.pluralsight.management.Order;
+import com.pluralsight.management.ReceiptSaver;
 import com.pluralsight.products.Chips;
 import com.pluralsight.products.Drink;
 import com.pluralsight.products.Sandwich;
@@ -60,9 +61,8 @@ public class Main {
     //Order Screen Method:
     public static void orderScreen() {
         while (menuLoop) {
-            Order orderBuilder; //Main Order Variable
             int orderIdNumber = generateID();  //Make a unique ID by checking the existing order lis
-            orderBuilder = new Order(orderIdNumber);
+           Order orderBuilder = new Order(orderIdNumber);
             System.out.println("""
                     ====================
                     AwAw Deli Screen
@@ -81,29 +81,34 @@ public class Main {
             switch (userInput) {
                 case 1: {
                     System.out.println("Build Your Sandwich: ");
-                    handleSandwichBuilder();
+                    sandwichBuilder = handleSandwichBuilder();
                     orderBuilder.addItem(sandwichBuilder);
+                    orderList.add(orderBuilder);
                     break;
                 }
                 case 2: {
                     System.out.println("Add a Drink: ");
-                    handleDrinkDistributor();
+                    drinksHolder = handleDrinkDistributor();
                     orderBuilder.addItem(drinksHolder);
+                    orderList.add(orderBuilder);
                     break;
                 }
                 case 3: {
                     System.out.println("Add Bag of Chips: ");
-                    handleChipSelection();
+                    chipsHolder =  handleChipSelection();
                     orderBuilder.addItem(chipsHolder);
+                    orderList.add(orderBuilder);
                     break;
                 }
                 case 4: {
                     System.out.println("Checkout: ");
-                    processCheckOut(orderBuilder); // Handles validation and file saving string
+                    orderList =  processCheckOut(orderBuilder); // Handles validation and file saving string
+
                     break;
                 }
                 case 0: {
                     System.out.println("Order Canceled");
+                    orderList = null;
                     sandwichBuilder = null; // To clear out current order from processing
                     drinksHolder = null;
                     chipsHolder = null;
@@ -118,7 +123,8 @@ public class Main {
         }
     }
     // Helper Methods for orderScreen to process order building:
-    public static void handleSandwichBuilder() {
+    public static Sandwich handleSandwichBuilder() {
+        Sandwich sb = null;
         //Bread Loop
         boolean breadLoop = true;
         while (breadLoop) {
@@ -183,44 +189,60 @@ public class Main {
                 }
             };
             //Pass user input choices into global Sandwich constructor to create start of sandwich.
-            sandwichBuilder = new Sandwich(size, bread, isToasted);
+            sb = new Sandwich(size, bread, isToasted);
+            //List<Toppings> toppingsList = new ArrayList<>();
+
             System.out.println("Now Select Toppings !");
             //Meat Loop
-            meatSelection();
+             sandwichBuilder.addTopping(meatSelection());
             // Cheese Loop
-            cheeseSelection();
+            sandwichBuilder.addTopping(cheeseSelection());
             // Topping Loop
-            toppingSelection();
+            sandwichBuilder.addTopping(toppingSelection());
             // Side Loop
-            sideSelection();
+            sandwichBuilder.addTopping(sideSelection());
             //Sauce Loop
-            sauceSelection();
+            sandwichBuilder.addTopping(sauceSelection());
+            System.out.println("Sandwich Added!");
+            sandwichCount++;
+            breadLoop =  addSandwich();
             // Add switch to confirm making another sandwich or return to main menu
-            System.out.println("""
-                    =======================
-                    Add another Sandwich?
-                    =======================
-                    1) Add Sandwich!
-                    0) Exit!
-                    =======================
-                    """);
-            System.out.println("Enter Choice: ");
-            int userInput = myScanner.nextInt();
-            myScanner.nextLine();
-            switch (userInput) {
-                case 1:
-                    break;
-                case 0:
-                    System.out.println("Back to Home Screen ! ");
-                    breadLoop = false; // Stop menu Loop and return back to order screen
-                    break;
-                default:
-                    System.out.println("Invalid option, Enter 1 or 0.");
-                    break;
-            }
+//            System.out.println("""
+//                    =======================
+//                    Add another Sandwich?
+//                    =======================
+//                    1) Add Sandwich!
+//                    0) Exit!
+//                    =======================
+//                    """);
+//            System.out.println("Enter Choice: ");
+//            int userInput = myScanner.nextInt();
+//            myScanner.nextLine();
+//            if (userInput == 1) {
+//                return sb;
+//            } else if (userInput == 0) {
+//                break;
+//            }else {
+//                System.out.println("Invalid option, Enter 0-1");
+//            }
+
+
+//            switch (userInput) {
+//                case 1:
+//                    break;
+//                case 0:
+//                    System.out.println( " Back to Home Screen ! ");
+//                    breadLoop = false; // Stop menu Loop and return back to order screen
+//                    return sb;
+//                default:
+//                    System.out.println("Invalid option, Enter 0-1");
+//                    break;
+//            }
         }
+        return sb;
     }
-    public static void handleDrinkDistributor() {
+    public static Drink handleDrinkDistributor() {
+        Drink drink = null;
         //Drink Loop
         boolean drinkLoop = true;
         while (drinkLoop) {
@@ -290,7 +312,7 @@ public class Main {
                         yield "Water";
                     }
                 };
-                drinksHolder = new Drink(sizeSelected, flavorSelected);
+                drink = new Drink(sizeSelected, flavorSelected);
                 sideCount++;
             }
             // Add switch to confirm adding another Drink or return to main menu
@@ -318,8 +340,10 @@ public class Main {
                     break;
             }
         }
+        return drink;
     }
-    public static void handleChipSelection() {
+    public static Chips handleChipSelection() {
+        Chips chips = null;
         //Chip Loop
         boolean chipLoop = true;
         while (chipLoop) {
@@ -363,7 +387,7 @@ public class Main {
                     yield "";
                 }
             };
-            chipsHolder = new Chips(chipsSelected);
+            chips = new Chips(chipsSelected);
             sideCount++;
             // Add switch to confirm adding another bag of Chips or return to main menu
             System.out.println("""
@@ -390,8 +414,10 @@ public class Main {
                     break;
             }
         }
+        return chips;
     }
-    public static void meatSelection() {
+    public static Meat meatSelection() {
+        Meat meats = null;
         //Meat Loop
         boolean meatLoop = true;
         while (meatLoop) {
@@ -414,32 +440,38 @@ public class Main {
             myScanner.nextLine();
             switch (meatChoice) {
                 case 1: {
-                    sandwichBuilder.addTopping(new Meat("Steak", askIfExtra()));
+                    boolean hasExtra = askIfExtra();
+                    meats = new Meat("Steak",hasExtra);
                     System.out.println("Steak Added! ");
                     addedToppings++;
                     break;}
                 case 2: {
-                    sandwichBuilder.addTopping(new Meat("Ham", askIfExtra()));
+                    boolean hasExtra = askIfExtra();
+                    meats = new Meat("Ham",hasExtra);
                     System.out.println("Ham Added! ");
                     addedToppings++;
                     break;}
                 case 3:{
-                    sandwichBuilder.addTopping(new Meat("Salami", askIfExtra()));
+                    boolean hasExtra = askIfExtra();
+                    meats = new Meat("Salami",hasExtra);
                     System.out.println("Salami Added! ");
                     addedToppings++;
                     break;}
                 case 4:{
-                    sandwichBuilder.addTopping(new Meat("Roast Beef", askIfExtra()));
+                    boolean hasExtra = askIfExtra();
+                    meats = new Meat("Roast Beef",hasExtra);
                     System.out.println("Roast Beef Added! ");
                     addedToppings++;}
                     break;
                 case 5:{
-                    sandwichBuilder.addTopping(new Meat("Chicken", askIfExtra()));
+                    boolean hasExtra = askIfExtra();
+                    meats = new Meat("Chicken",hasExtra);
                     System.out.println("Chicken Added! ");
                     addedToppings++;
                     break;}
                 case 6:{
-                    sandwichBuilder.addTopping(new Meat("Bacon", askIfExtra()));
+                    boolean hasExtra = askIfExtra();
+                    meats = new Meat("Steak",hasExtra);
                     System.out.println("Bacon Added! ");
                     addedToppings++;
                     break;}
@@ -452,6 +484,7 @@ public class Main {
             }
 
         }
+        return meats;
     }
     public static boolean askIfExtra() {
         System.out.println("""
@@ -471,6 +504,32 @@ public class Main {
             }
         };
     }
+    public static boolean addSandwich(){
+        boolean addSandwich = true;
+        // Add switch to confirm making another sandwich or return to main menu
+        System.out.println("""
+                    =======================
+                    Add another Sandwich?
+                    =======================
+                    1) Add Sandwich!
+                    0) Exit!
+                    =======================
+                    """);
+        System.out.println("Enter Choice: ");
+        int userInput = myScanner.nextInt();
+        myScanner.nextLine();
+        switch (userInput) {
+               case 1: {
+                   return addSandwich;}
+                case 0:{
+                    System.out.println("Back to Home Screen ! ");
+                     return !addSandwich;}
+            default:{
+                   System.out.println("Invalid option, Enter 0-1");
+                   break;}
+            }
+            return addSandwich;
+    }
     public static int generateID() {
         int id;
         boolean idExists;
@@ -486,7 +545,8 @@ public class Main {
         } while (idExists);
         return id;
     }
-    public static void cheeseSelection() {
+    public static Cheese cheeseSelection() {
+        Cheese cheese = null;
         //Cheese Loop
         boolean cheeseLoop = true;
         while (cheeseLoop) {
@@ -506,23 +566,32 @@ public class Main {
             int cheeseChoice = myScanner.nextInt();
             myScanner.nextLine();
             switch (cheeseChoice) {
-                case 1:
-                    sandwichBuilder.addTopping(new Cheese("American", askIfExtra()));
+                case 1:{
+                    boolean hasExtra = askIfExtra();
+                    cheese = new Cheese("American",hasExtra);
+                    System.out.println("Cheese Added! ");
                     addedToppings++;
-                    break;
-                case 2:
-                    sandwichBuilder.addTopping(new Cheese("Provolone", askIfExtra()));
+                    break;}
+                case 2:{
+                    boolean hasExtra = askIfExtra();
+                    cheese = new Cheese("Provolone",hasExtra);
+                    System.out.println("Cheese Added! ");
                     addedToppings++;
-                    break;
-                case 3:
-                    sandwichBuilder.addTopping(new Cheese("Cheddar", askIfExtra()));
+                    break;}
+                case 3:{
+                    boolean hasExtra = askIfExtra();
+                    cheese = new Cheese("Cheddar",hasExtra);
+                    System.out.println("Cheese Added! ");
                     addedToppings++;
-                    break;
-                case 4:
-                    sandwichBuilder.addTopping(new Cheese("Swiss", askIfExtra()));
+                    break;}
+                case 4:{
+                    boolean hasExtra = askIfExtra();
+                    cheese = new Cheese("Swiss",hasExtra);
+                    System.out.println("Cheese Added! ");
                     addedToppings++;
-                    break;
+                    break;}
                 case 0:
+                    System.out.println("No Cheese Added! ");
                     cheeseLoop = false;
                     break;
                 default:
@@ -530,8 +599,10 @@ public class Main {
                     break;
             }
         }
+        return cheese;
     }
-    public static void toppingSelection() {
+    public static Toppings toppingSelection() {
+        Toppings regular = null;
         //Topping Loop
         boolean toppingLoop = true;
         while (toppingLoop) {
@@ -557,39 +628,39 @@ public class Main {
             switch (toppingChoice) {
                 case 1:{
                     System.out.println("Lettuce Added! ");
-                    sandwichBuilder.addTopping(new Regular("Lettuce"));
+                    regular = new Regular("Lettuce");
                     break;}
                 case 2:{
                     System.out.println("Peppers Added! ");
-                    sandwichBuilder.addTopping(new Regular("Peppers"));
+                    regular = new Regular("Peppers");
                     break;}
                 case 3:{
                     System.out.println("Onions Added! ");
-                    sandwichBuilder.addTopping(new Regular("Onions"));
+                    regular = new Regular("Onions");
                     break;}
                 case 4:{
                     System.out.println("Tomatoes Added! ");
-                    sandwichBuilder.addTopping(new Regular("Tomatoes"));
+                    regular = new Regular("Tomatoes");
                     break;}
                 case 5:{
                     System.out.println("Jalapenos Added! ");
-                    sandwichBuilder.addTopping(new Regular("Jalapenos"));
+                    regular = new Regular("Jalapenos");
                     break;}
                 case 6:{
                     System.out.println("Cucumbers Added! ");
-                    sandwichBuilder.addTopping(new Regular("Cucumbers"));
+                    regular = new Regular("Cucumbers");
                     break;}
                 case 7:{
                     System.out.println("Pickles Added! ");
-                    sandwichBuilder.addTopping(new Regular("Pickles"));
+                    regular = new Regular("Pickles");
                     break;}
                 case 8:{
                     System.out.println("Guac Added! ");
-                    sandwichBuilder.addTopping(new Regular("Guac"));
+                    regular = new Regular("Guac");
                     break;}
                 case 9:{
                     System.out.println("Mushrooms Added! ");
-                    sandwichBuilder.addTopping(new Regular("Mushrooms"));
+                    regular = new Regular("Mushrooms");
                     break;}
                 case 0:{
                     toppingLoop = false;
@@ -599,8 +670,10 @@ public class Main {
                     break;}
             }
         }
+        return regular;
     }
-    public static void sideSelection () {
+    public static Sides sideSelection () {
+        Sides sides = null;
         //Side Loop
          boolean sideLoop = true;
             while (sideLoop) {
@@ -616,7 +689,7 @@ public class Main {
                 myScanner.nextLine();
                 switch (sauce) {
                     case 1:{
-                        sandwichBuilder.addTopping(new Sides("Au Jus"));
+                        sides = new Sides("Au Jus");
                         System.out.println("Au Ju Added!");
                         sauces++;
                         break;}
@@ -629,8 +702,10 @@ public class Main {
                         break;}
                 }
             }
+            return sides;
         }
-    public static void sauceSelection () {
+    public static Sauces sauceSelection () {
+        Sauces sauces = null;
         //Sauce Loop
          boolean sauceLoop = true;
             while (sauceLoop) {
@@ -653,26 +728,27 @@ public class Main {
                 switch (sauceChoice) {
                     case 1: {
                         System.out.println("Mayo Added! ");
-                        sandwichBuilder.addTopping(new Sauces("Mayo"));
+                        sauces = new Sauces("Mayo");
                         break;}
                     case 2: {
                         System.out.println("Mustard Added!");
-                        sandwichBuilder.addTopping(new Sauces("Mustard"));
+                        sauces = new Sauces("Mustard");
                         break;}
                     case 3: {
                         System.out.println("Ketchup Added!");
-                        sandwichBuilder.addTopping(new Sauces("Ketchup"));
+                        sauces = new Sauces("Ketchup");
                         break;}
                     case 4: {
                         System.out.println("Ranch Added!");
-                        sandwichBuilder.addTopping(new Sauces("Ranch"));
+                        sauces = new Sauces("Ranch");
                         break;}
                     case 5: {
                         System.out.println("Thousand Island Added!");
-                        sandwichBuilder.addTopping(new Sauces("Thousand Island"));
+                        sauces = new Sauces("Thousand Island");
                         break;}
                     case 6:{
-                        sandwichBuilder.addTopping(new Sauces("Vinaigrette"));
+                        System.out.println("Vinaigrette Added!");
+                        sauces = new Sauces("Vinaigrette");
                         break;}
                     case 0: {
                         sauceLoop = false;
@@ -682,10 +758,9 @@ public class Main {
                     }
                 }
             }
-            System.out.println("Sandwich Added!");
-            sandwichCount++;
+            return sauces;
         }
-    public static void processCheckOut(Order order) {
+    public static List<Order> processCheckOut(Order order) {
         if (!order.orderRequirementValidator()){
             System.out.println("""
                     Your Cart Does NOT meet minium requirement.
@@ -695,9 +770,40 @@ public class Main {
                     """);
         }
         for (PricedItem item : order.getPricedItems()){
-            if (item instanceof Display){
-                System.out.println(((Display) item).getDescription());
-            }
+             if (item instanceof Display) {
+                 System.out.println(((Display) item).getDescription()); // Display Name and price of item
+                 System.out.println(order);  //Display current total calculation
+                 // Ask user to confirm order or cancel.
+                 System.out.println("""
+                         1) Confirm Order
+                         0) Cancel Order
+                         """);
+                 int confirmation = myScanner.nextInt();
+                 switch (confirmation) {
+                     case 1: {
+                         ReceiptSaver orderSaver = new ReceiptSaver();
+                         orderSaver.saveReceiptToFile(order);
+                         System.out.println("""
+                                 Order Successfully Completed!
+                                 """);
+                         orderList.add(order);
+                         sandwichBuilder = null;
+                         drinksHolder = null;
+                         chipsHolder = null;
+                         break;
+                     }
+                     case 0: {
+                         break;
+                     }
+                     default: {
+                         System.out.println("Invalid Option: choose 0-1");
+                     }
+                 }
+             }
         }
+        return orderList;
     }
+
+
+
 }// End of MAIN

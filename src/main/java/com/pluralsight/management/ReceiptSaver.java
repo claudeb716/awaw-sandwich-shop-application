@@ -1,7 +1,5 @@
 package com.pluralsight.management;
 
-import com.pluralsight.interfaces.Display;
-import com.pluralsight.interfaces.PricedItem;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

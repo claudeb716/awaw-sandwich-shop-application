@@ -55,6 +55,12 @@ public class Order {
                 numberOfOtherItems++;
             }
         }
+        System.out.println(numberOfSandwiches);
+
+        System.out.println(numberOfOtherItems);
+
+
+
         // if check to have at least 1 sandwich. if none MUST have at least one bag of chips or drink
         if (numberOfSandwiches > 0) {
             return true;
