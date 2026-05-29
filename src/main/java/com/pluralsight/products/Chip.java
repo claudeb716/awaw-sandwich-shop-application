@@ -1,9 +1,9 @@
 package com.pluralsight.products;
 
-import com.pluralsight.interfaces.Display;
-import com.pluralsight.interfaces.PricedItem;
+import com.pluralsight.interfaces.IDisplay;
+import com.pluralsight.interfaces.IPricedItem;
 
-public class Chip implements PricedItem, Display {
+public class Chip implements IPricedItem, IDisplay {
     //Fields:
     private  String chipType;
     //Constructor:

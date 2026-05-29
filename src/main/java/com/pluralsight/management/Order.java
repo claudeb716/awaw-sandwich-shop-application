@@ -1,7 +1,7 @@
 package com.pluralsight.management;
 
-import com.pluralsight.interfaces.Display;
-import com.pluralsight.interfaces.PricedItem;
+import com.pluralsight.interfaces.IDisplay;
+import com.pluralsight.interfaces.IPricedItem;
 import com.pluralsight.products.Sandwich;
 
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.List;
 
 public class Order {
     //Fields:
-    private List<PricedItem> pricedItems;
+    private List<IPricedItem> pricedItems;
     private int orderId;
     //Constructor
     public Order(int orderId) {
@@ -17,19 +17,19 @@ public class Order {
         this.pricedItems = new ArrayList<>();
     }
     //Getters
-    public List<PricedItem> getPricedItems() {
+    public List<IPricedItem> getPricedItems() {
         return this.pricedItems;
     }
     public int getOrderId() {
         return orderId;
     }
     //Derived Methods:
-    public void addItem(PricedItem item){
+    public void addItem(IPricedItem item){
         this.pricedItems.add(item);
     }
     public double calculateOrderTotal(){
         double orderTotal = 0.0;
-        for (PricedItem item : this.pricedItems){
+        for (IPricedItem item : this.pricedItems){
             orderTotal += item.calculatePrice();
         }
         return orderTotal;
@@ -43,7 +43,7 @@ public class Order {
             return false;
         }
         //Loop through items and count how many
-        for (PricedItem item : this.pricedItems){
+        for (IPricedItem item : this.pricedItems){
             if (item instanceof Sandwich){
                 numberOfSandwiches++;
             }else {
@@ -66,9 +66,9 @@ public class Order {
     @Override
     public String toString() {
         String orderReceipt = "================= \n" + "Order ID: " + orderId + "\n" + "=================\n";
-        for (PricedItem item : this.pricedItems){
-            if (item instanceof Display){
-                orderReceipt += ((Display) item).getDescription() + "\n";
+        for (IPricedItem item : this.pricedItems){
+            if (item instanceof IDisplay){
+                orderReceipt += ((IDisplay) item).getDescription() + "\n";
                 orderReceipt += "----------------------------------\n";
             }
         }

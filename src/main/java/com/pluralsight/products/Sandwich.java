@@ -1,13 +1,13 @@
 package com.pluralsight.products;
 
-import com.pluralsight.interfaces.Display;
-import com.pluralsight.interfaces.PricedItem;
+import com.pluralsight.interfaces.IDisplay;
+import com.pluralsight.interfaces.IPricedItem;
 import com.pluralsight.toppings.Topping;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Sandwich implements PricedItem, Display {
+public class Sandwich implements IPricedItem, IDisplay {
     //Fields:
     private String sandwichSize;
     private String breadType;

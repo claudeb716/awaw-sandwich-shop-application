@@ -1,9 +1,9 @@
 package com.pluralsight.products;
 
-import com.pluralsight.interfaces.Display;
-import com.pluralsight.interfaces.PricedItem;
+import com.pluralsight.interfaces.IDisplay;
+import com.pluralsight.interfaces.IPricedItem;
 
-public class Drink implements PricedItem, Display {
+public class Drink implements IPricedItem, IDisplay {
     //Fields:
     private String drinkSize;
     private String drinkFlavor;
