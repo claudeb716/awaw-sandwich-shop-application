@@ -21,6 +21,10 @@ public class Chips implements PricedItem, Display {
     @Override
     public String getDescription() {
         //return formatted price of chips
-        return String.format("Chips: %s ($%.2f)",this.chipType, this.calculatePrice());
+        if (!this.chipType.isEmpty()){
+            return String.format("Chips: %s ($%.2f)",this.chipType, this.calculatePrice());}
+        else {
+            return "";
+        }
     }
 }

@@ -30,6 +30,10 @@ public class Drink implements PricedItem, Display {
     //Display
     @Override
     public String getDescription() {
-        return String.format("Drink: %s %s ($%.2f)", this.drinkSize, this.drinkFlavor, this.calculatePrice());
+        if (!this.drinkSize.isEmpty() && !this.drinkFlavor.isEmpty()){
+            return String.format("Drink: %s %s ($%.2f)", this.drinkSize, this.drinkFlavor, this.calculatePrice());
+        }else {
+            return "";
+        }
     }
 }

@@ -60,8 +60,8 @@ public class Main {
     }// OUTSIDE OF MAIN Method:
     //Order Screen Method:
     public static void orderScreen() {
+        int orderIdNumber = generateID();  //Make a unique ID by checking the existing order list
         while (menuLoop) {
-            int orderIdNumber = generateID();  //Make a unique ID by checking the existing order list
            Order orderBuilder = new Order(orderIdNumber);
             System.out.println("""
                     ====================
@@ -129,8 +129,8 @@ public class Main {
     public static Sandwich handleSandwichBuilder() {
         Sandwich sb = null;
         //Bread Loop
-        boolean breadLoop = true;
-        while (breadLoop) {
+        //boolean breadLoop = true;
+       // while (breadLoop) {
             System.out.println("""
                     =====================
                     Select Sandwich Size:
@@ -208,7 +208,7 @@ public class Main {
             sb.addTopping(sauceSelection());
             System.out.println("Sandwich Added!");
             sandwichCount++;
-            breadLoop =  addSandwich();
+            //TODO breadLoop =  addSandwich();
             // Add switch to confirm making another sandwich or return to main menu
 //            System.out.println("""
 //                    =======================
@@ -241,7 +241,7 @@ public class Main {
 //                    System.out.println("Invalid option, Enter 0-1");
 //                    break;
 //            }
-        }
+        //}
         return sb;
     }
     public static Drink handleDrinkDistributor() {
@@ -698,6 +698,8 @@ public class Main {
                         break;}
                     case 2:{
                         System.out.println("Au Jus not Added");
+                        sides = new Sides("");
+
                         sideLoop = false;
                         break;}
                     default:{
@@ -764,7 +766,7 @@ public class Main {
             return sauces;
         }
     public static void processCheckOut(List<Order> orderList) {
-        if (!orderList.isEmpty()){
+        if (orderList.isEmpty()){
             System.out.println("""
                     Your Cart Does NOT meet minium requirement.
                                      NOTE:
@@ -778,7 +780,7 @@ public class Main {
             // if (order instanceof Display) {
 
             System.out.println(order.toString()); // Display Name and price of item
-            System.out.println(order.calculateOrderTotal());  //Display current total calculation
+            //System.out.println(order.calculateOrderTotal());  //Display current total calculation
         }
 
                  // Ask user to confirm order or cancel.

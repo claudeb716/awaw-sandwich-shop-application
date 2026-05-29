@@ -50,15 +50,18 @@ public class Sandwich implements PricedItem, Display {
     public String getDescription() {
         // Create string of a built sandwich
         StringBuilder sb = new StringBuilder();
+
         sb.append(String.format("%s Sandwich on %s Bread (%s Toasted)\n", this.sandwichSize, this.breadType, this.isToasted));
 
         if (this.allToppings.isEmpty()) { //if all toppings are empty
             return sb.append("None").toString();
+        }else {
+            sb.append("Toppings:\n");
+            for (Toppings t : allToppings) {
+                sb.append("  ").append(t.getDescription(this.sandwichSize)).append("\n ");
+            }
+            return sb.toString();
         }
-        sb.append("Toppings:\n");
-        for (Toppings t : allToppings) {
-            sb.append("  ").append(t.getDescription(this.sandwichSize)).append("\n ");
-        }
-        return sb.toString();
     }
 }
+
