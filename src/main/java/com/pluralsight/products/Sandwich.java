@@ -25,8 +25,7 @@ public class Sandwich implements PricedItem, Display {
 
         this.allToppings.add(t);
     }
-
-    //Derived Method: to get Price with passing sandwichSize (Child classes will handle their own pricing)
+    //Derived Method:
     @Override
     public double calculatePrice(){
         double sandwichPrice= 0.0;
@@ -44,8 +43,6 @@ public class Sandwich implements PricedItem, Display {
         }
         return sandwichPrice;
     }
-    //Override:
-    //Display
     @Override
     public String getDescription() {
         // Create string of a built sandwich

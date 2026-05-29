@@ -4,12 +4,10 @@ import com.pluralsight.toppings.Premium;
 
 public class Cheese extends Premium {
     //Fields:
-
     //Constructor: created from parent class(Premium) for name of Cheese and if they want extra?
     public Cheese(String name, boolean hasExtra) {
         super(name, hasExtra);
     }
-
     //Override method:  sandwichSize as a parameter to handle class own pricing. and check if hasExtra Cheese
     @Override
     public double getPrice(String sandwichSize) {

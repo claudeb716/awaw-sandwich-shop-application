@@ -2,14 +2,7 @@ package com.pluralsight.interfaces;
 
 public interface PricedItem {
     //No Fields or Constructor:
-
-    //Methods:
+    //Method:
     //Every item(Sandwich,Chip,Drink) MUST be able to CALCULATE its own PRICE.
      double calculatePrice();
-
-    //Override: Methods from Interfaces
-    //PricedItem
-
-    //Derived Method to get Price with passing sandwichSize (Child classes will handle their own pricing)
-    //double getPrice(String sandwichSize);
 }

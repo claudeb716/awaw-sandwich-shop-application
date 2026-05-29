@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Order {
-    //Fields: List to hold PricedItems
-    // Order tracker
+    //Fields:
     private List<PricedItem> pricedItems;
     private int orderId;
     //Constructor
@@ -21,17 +20,13 @@ public class Order {
     public List<PricedItem> getPricedItems() {
         return this.pricedItems;
     }
-
     public int getOrderId() {
         return orderId;
     }
     //Derived Methods:
-
-    // Add PricedItem to the Order
     public void addItem(PricedItem item){
         this.pricedItems.add(item);
     }
-    // Adds up every pricedItem added to the Order
     public double calculateOrderTotal(){
         double orderTotal = 0.0;
         for (PricedItem item : this.pricedItems){
@@ -68,7 +63,6 @@ public class Order {
             return numberOfOtherItems > 0;
         }
     }
-    // Description Method
     @Override
     public String toString() {
         String orderReceipt = "================= \n" + "Order ID: " + orderId + "\n" + "=================\n";

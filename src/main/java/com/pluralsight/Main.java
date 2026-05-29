@@ -779,9 +779,6 @@ public class Main {
         }
         for (Order order : orderList) {
 
-            //for (Display item : order.getPricedItems()){
-            // if (order instanceof Display) {
-
             System.out.println(order.toString()); // Display Name and price of item
             //System.out.println(order.calculateOrderTotal());  //Display current total calculation
         }
@@ -816,7 +813,4 @@ public class Main {
                      }
                  }
     }
-
-
-
 }// End of MAIN
