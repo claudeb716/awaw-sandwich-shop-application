@@ -86,26 +86,27 @@ public class Main {
                     System.out.println("Build Your Sandwich: ");
                     sandwichBuilder = handleSandwichBuilder();
                     orderBuilder.addItem(sandwichBuilder);
-                    orderList.add(orderBuilder);
+                    //orderList.add(orderBuilder);
                     break;
                 }
                 case 2: {
                     System.out.println("Add a Drink: ");
                     drinksHolder = handleDrinkDistributor();
                     orderBuilder.addItem(drinksHolder);
-                    orderList.add(orderBuilder);
+                    //orderList.add(orderBuilder);
                     break;
                 }
                 case 3: {
                     System.out.println("Add Bag of Chips: ");
                     chipsHolder =  handleChipSelection();
-                    orderBuilder.addItem(chipsHolder);
-                    orderList.add(orderBuilder);
+                    //orderBuilder.addItem(chipsHolder);
+
                     break;
                 }
                 case 4: {
                     System.out.println("Checkout: ");
                     processCheckOut(orderList); // Handles validation and file saving string
+                    orderList.add(orderBuilder);
 
                     break;
                 }
@@ -114,7 +115,7 @@ public class Main {
                     sideCount = 0;
                     sandwichCount = 0;
                     addedToppings = 0;
-                    orderList = null;
+                    orderList.clear();
                     sandwichBuilder = null; // To clear out current order from processing
                     drinksHolder = null;
                     chipsHolder = null;
