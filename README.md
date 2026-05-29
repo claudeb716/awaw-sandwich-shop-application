@@ -1,3 +1,4 @@
+
 # Project Title
 AWAW Sandwich Shop Application
 
@@ -52,9 +53,11 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Demo
 
-Include screenshots or GIFs that show your application in action. Use tools like [Giphy Capture](https://giphy.com/apps/giphycapture) to record a GIF of your application.
 
-![Application Screenshot](path/to/your/screenshot.png)
+<img width="6261" height="7445" alt="Final Diagram" src="https://github.com/user-attachments/assets/6865d7b2-e86c-430a-acbc-95b4296b6fc0" />
+
+<img width="400" height="263" alt="Screen Recording 2026-05-29 030427" src="https://github.com/user-attachments/assets/56167a21-d488-40d4-a095-59a7bab9cadb" />
+
 
 ## Future Work
 
